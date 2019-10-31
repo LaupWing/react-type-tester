@@ -13,16 +13,14 @@ class Games extends Component {
         `
     }
     userTypesIn = async (input)=>{
-        console.log('Game Component')
         await this.setState({
             userInput: input
         })
-        console.log(this.state.userInput)
     }
     render(){
         return(
             <div className="Game">
-                <LiveView story={this.state.story}/>
+                <LiveView story={this.state.story} userInput={this.state.userInput}/>
                 <Input userTypesIn={this.userTypesIn}/>
             </div>
         )
