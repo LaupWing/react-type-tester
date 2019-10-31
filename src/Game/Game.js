@@ -4,7 +4,7 @@ import LiveView from '../LiveView/LiveView'
 import './Game.css'
 class Games extends Component {
     state = {
-        userInput : 'test1 test2',
+        userInput : 'Dorothy live',
         faulty: null,
         succes: null,
         timeLeft: 60,
