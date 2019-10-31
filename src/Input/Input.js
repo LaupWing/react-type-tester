@@ -8,7 +8,7 @@ class Input extends Component{
     render(){
         return(
             <div className="Input">
-                <textarea onChange={this.handleChange}/>
+                <textarea onChange={this.handleChange} value="test test"/>
             </div>
         )
     }

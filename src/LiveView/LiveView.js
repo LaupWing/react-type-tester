@@ -5,10 +5,10 @@ import Word from './parts/Word'
 const LiveView =  (props)=> {
     const {story, userInput} = props
     const storyArray = story.trim().split(' ')
-    console.log(userInput)
+    
     const storyInSpan = storyArray.map((word,index)=>{
         return(
-            <Word key={index} word={word}/>
+            <Word key={index} word={word} userInput={userInput}/>
         )
     })
     return(
