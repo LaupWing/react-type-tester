@@ -1,0 +1,9 @@
+.Input textarea{
+    width: var(--max-width);
+    height: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.5em;
+    resize: none;
+    overflow-y: auto;
+}
