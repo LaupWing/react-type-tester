@@ -2,7 +2,7 @@ import React from 'react'
 
 const word = (props)=>{
     const {word} = props
-    const spanLetters = word.map(letter=>{
+    const spanLetters = word.split('').map(letter=>{
         return (
             <span className="letter">
                 {letter}
@@ -10,9 +10,7 @@ const word = (props)=>{
         )
     })
     return(
-        <span className="word">
-            {spanLetters}
-        </span>
+        <span className="word"> {spanLetters} </span>
     )
 }
 

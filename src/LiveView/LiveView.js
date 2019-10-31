@@ -1,12 +1,12 @@
 import React from 'react'
 import './LiveView.css'
-
+import Word from './parts/Word'
 const LiveView =  (props)=> {
     const {story} = props
     const storyArray = story.trim().split(' ')
     const storyInSpan = storyArray.map((word,index)=>{
         return(
-            <span key={index}> {word} </span>
+            <Word key={index} word={word}/>
         )
     })
     return(
