@@ -9,8 +9,10 @@ const Output = (props)=>{
             const wordPerMinute = (totalWords/(60-timeLeft)) * 60
             
             return Math.floor(wordPerMinute)
+        }else{
+            console.log('zero')
+            return '0'
         }
-        return '0'
     }
     const incorrect = ()=>{
         if(userInput.length >0){

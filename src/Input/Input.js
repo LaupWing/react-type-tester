@@ -3,23 +3,22 @@ import './Input.css'
 const Input = (props)=>{
     const {inputDisplay} = props 
     
-    const handleChange = (e)=>{
-        props.userTypesIn(e.target.value)
-    }
     const handleSubmit = (e)=>{
         e.preventDefault()
     }
-
-    const handleKeypress = (e)=>{
+    
+    const handleKeyUp = (e)=>{
         if(e.key.toLowerCase() === 'enter'){
-            props.reset()
+            return props.reset()
         }
+        props.userTypesIn(e.target.value)
+        console.log(e.target.value)
     }
 
     if(inputDisplay === 'textarea'){
         return(
             <div className="Input">
-                <textarea onChange={handleChange} onKeyPress={handleKeypress} spellCheck="false"/>
+                <textarea onKeyUp={handleKeyUp} spellCheck="false"/>
                 <button>Press enter to redo</button>
             </div>
         )
@@ -27,7 +26,7 @@ const Input = (props)=>{
         return(
             <div className="Input">
                 <form onSubmit={handleSubmit}>
-                    <input type="text" onChange={handleChange}/>
+                    <input type="text"/>
                 </form>
             </div>
         )

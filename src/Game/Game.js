@@ -7,7 +7,7 @@ import './Game.css'
 class Games extends Component {
     state = {
         interval:null,
-        userInput : '',
+        userInput : 'Test',
         faulty: null,
         succes: null,
         timeLeft: 60,
@@ -23,6 +23,7 @@ class Games extends Component {
         this.startCounting()
     }
     startCounting = ()=>{
+        console.log(this.state.userInput,this.state.userInput.length) 
         if(this.state.userInput.length > 0){
             if(this.state.interval===null){
                 this.setState({
@@ -34,18 +35,20 @@ class Games extends Component {
                 })
             }
         }
-        if(this.state.userInput.length === 0){
-            clearInterval(this.state.interval)
-            this.setState({
-                interval: null
-            })
-        }
     }
-    reset = ()=>{
+    stopCounting = ()=>{
+        console.log('clearing interval')
+        clearInterval(this.state.interval)
         this.setState({
+            interval: null
+        })
+    }
+    reset = async  ()=>{
+        console.log('restting')
+        await this.setState({
             userInput: ''
         })
-        this.startCounting()
+        this.stopCounting()
     }
     render(){
         return(
