@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import Input from '../Input/Input'
 import LiveView from '../LiveView/LiveView'
+import Output from '../Output/Output'
 import './Game.css'
+
 class Games extends Component {
     state = {
         userInput : 'Dorothy live',
@@ -22,6 +24,9 @@ class Games extends Component {
     render(){
         return(
             <div className="Game">
+                <Output
+                    userInput={this.state.userInput}
+                />
                 <LiveView 
                     story={this.state.story} 
                     userInput={this.state.userInput}
