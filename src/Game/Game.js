@@ -6,6 +6,7 @@ import './Game.css'
 
 class Games extends Component {
     state = {
+        interval:null,
         userInput : 'Dorothy live',
         faulty: null,
         succes: null,
@@ -16,15 +17,34 @@ class Games extends Component {
         inputDisplay: 'textarea'
     }
     userTypesIn = async (input)=>{
-        // console.log(input)
         await this.setState({
             userInput: input
         })
+        this.startCounting()
+    }
+    startCounting = ()=>{
+        if(this.state.userInput.length > 0){
+            console.log('set interval')
+            this.setState({
+                interval : setInterval(()=>{
+                    console.log(this.state.timeLeft)
+                    this.setState({
+                        timeLeft : this.state.timeLeft -1
+                    })
+                },1000)
+            })
+        }
+        if(this.state.userInput.length === 0){
+            this.setState({
+                interval : null
+            })
+        }
     }
     render(){
         return(
             <div className="Game">
                 <Output
+                    timeLeft={this.state.timeLeft}
                     userInput={this.state.userInput}
                 />
                 <LiveView 

@@ -1,8 +1,8 @@
 import React from 'react'
 import './Output.css'
 const Output = (props)=>{
-    const {userInput} = props
-    // Output is one step behind maybe redux?
+    const {userInput, timeLeft} = props
+    // Output is one step behind maybe use redux to fix this problem?
     const calcUserScore = ()=>{
         if(userInput){
             const correct = document.querySelectorAll('.LiveView span.word.correct').length
@@ -17,6 +17,9 @@ const Output = (props)=>{
     }
     return(
         <div className="Output">
+            <div className="time-left">
+                {timeLeft}
+            </div>
             {calcUserScore()}
         </div>
     )
