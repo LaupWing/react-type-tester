@@ -4,4 +4,26 @@
     overflow-y: scroll;
     color: white;
     font-size: 1.5em;
+    padding: 0 15px;
+    scroll-behavior: smooth;
+}
+
+/* width */
+.LiveView::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.LiveView::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+.LiveView::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+.LiveView::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }

@@ -10,10 +10,21 @@ const word = (props)=>{
             index
         }
     })
+    const getLastSpanWord =()=>{
+        const currentWord = document.querySelector('.LiveView span.word.current')
+        const container = document.querySelector('.LiveView')
+        if(currentWord){
+            if(currentWord.offsetTop > container.scrollTop){
+                container.scrollTo(0,currentWord.offsetTop)
+            }
+        }
+    }
+
     const checkWord = ()=>{
         const findIndex = wordArrayWithIndex.find(wordObj=>wordObj.index===wordIndex)
         if(findIndex){
             if(findIndex.index === (wordArray.length-1)){
+                getLastSpanWord()
                 return 'word current'
             }
             if(findIndex.word === word){

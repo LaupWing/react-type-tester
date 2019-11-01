@@ -19,7 +19,7 @@ const Input = (props)=>{
     if(inputDisplay === 'textarea'){
         return(
             <div className="Input">
-                <textarea onChange={handleChange} onKeyPress={handleKeypress}/>
+                <textarea onChange={handleChange} onKeyPress={handleKeypress} spellCheck="false"/>
                 <button>Press enter to redo</button>
             </div>
         )
