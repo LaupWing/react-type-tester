@@ -1,5 +1,12 @@
+.word{
+    transition: .5s;
+}
 .word.correct{
     color: green;
+}
+.word.current{
+    background: grey;
+    padding: 5px;
 }
 .word.incorrect{
     color: red;

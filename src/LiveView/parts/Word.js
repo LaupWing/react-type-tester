@@ -2,6 +2,7 @@ import React from 'react'
 import './Word.css'
 const word = (props)=>{
     const {word, userInput, wordIndex} = props
+    // These variables below needs to moved to the game component
     const wordArray = userInput !== null ? userInput.split(' ') : []
     const wordArrayWithIndex = wordArray.map((word,index)=>{
         return{
@@ -9,10 +10,12 @@ const word = (props)=>{
             index
         }
     })
-    // const lastWord = wordArray.length>0 ? wordArray[wordArray.length-1] : null
     const checkWord = ()=>{
         const findIndex = wordArrayWithIndex.find(wordObj=>wordObj.index===wordIndex)
         if(findIndex){
+            if(findIndex.index === (wordArray.length-1)){
+                return 'word current'
+            }
             if(findIndex.word === word){
                 return 'word correct'
             }else{

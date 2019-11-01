@@ -15,9 +15,9 @@ class Games extends Component {
     }
     userTypesIn = async (input)=>{
         // console.log(input)
-        // await this.setState({
-        //     userInput: input
-        // })
+        await this.setState({
+            userInput: input
+        })
     }
     render(){
         return(
