@@ -12,7 +12,7 @@ const Input = (props)=>{
 
     const handleKeypress = (e)=>{
         if(e.key.toLowerCase() === 'enter'){
-            console.log('reset')
+            props.reset()
         }
     }
 
