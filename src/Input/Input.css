@@ -1,9 +1,28 @@
+.Input{
+    display: flex;
+    flex-direction: column;
+}
 .Input textarea{
     width: var(--max-width);
     height: 200px;
-    border-radius: 5px;
     padding: 10px;
     font-size: 1.5em;
     resize: none;
     overflow-y: auto;
+}
+.Input button{
+    padding: 10px;
+    color: white;
+    font-size: .8em;
+    background: transparent;
+    border: white solid 2px;
+    border-top: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0 0 5px 5px;
+    cursor: pointer;
+}
+.Input button:hover{
+    background: white;
+    color: var(--main-color);
 }

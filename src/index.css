@@ -5,6 +5,7 @@
 }
 body{
     --max-width:600px;
+    --main-color: #0F2933;
     background: #0F2933;
     width: 100vw;
     height: 100vh;
@@ -16,4 +17,8 @@ body{
 input,
 textarea{
     outline: none;
+}
+
+button{
+    transition: .25s;
 }
