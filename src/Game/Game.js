@@ -14,7 +14,7 @@ class Games extends Component {
         inputDisplay: 'textarea'
     }
     userTypesIn = async (input)=>{
-        console.log(input)
+        // console.log(input)
         // await this.setState({
         //     userInput: input
         // })
