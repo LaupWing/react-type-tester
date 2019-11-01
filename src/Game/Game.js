@@ -24,19 +24,21 @@ class Games extends Component {
     }
     startCounting = ()=>{
         if(this.state.userInput.length > 0){
-            console.log('set interval')
-            this.setState({
-                interval : setInterval(()=>{
-                    console.log(this.state.timeLeft)
-                    this.setState({
-                        timeLeft : this.state.timeLeft -1
-                    })
-                },1000)
-            })
+            if(this.state.interval===null){
+                this.setState({
+                    interval : setInterval(()=>{
+                        console.log(this.state.timeLeft)
+                        this.setState({
+                            timeLeft : this.state.timeLeft -1
+                        })
+                    },1000)
+                })
+            }
         }
         if(this.state.userInput.length === 0){
+            clearInterval(this.state.interval)
             this.setState({
-                interval : null
+                interval: null
             })
         }
     }
