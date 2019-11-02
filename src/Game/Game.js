@@ -7,7 +7,7 @@ import './Game.css'
 class Games extends Component {
     state = {
         interval:null,
-        userInput : 'Test',
+        userInput : '',
         faulty: null,
         succes: null,
         timeLeft: 60,
