@@ -45,6 +45,7 @@ class Output extends Component{
             return '0'
         }
     }
+    
     render(){
         return(
             <div className="Output">

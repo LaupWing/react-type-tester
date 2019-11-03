@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 
 class Games extends Component {
     componentDidMount(){
-        this.props.setStory(this.state.story)
+        // this.props.setStory(this.state.story)
     }
     state = {
         interval:null,
