@@ -1,6 +1,6 @@
 const initState = {
     userInput: '',
-    story: null,
+    story: '',
     timeLeft: 60
 }
 

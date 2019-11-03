@@ -1,6 +1,7 @@
 import React from 'react'
 import './LiveView.css'
 import Word from './parts/Word'
+import {connect} from 'react-redux'
 
 const LiveView =  (props)=> {
     const {story, userInput} = props
@@ -24,4 +25,10 @@ const LiveView =  (props)=> {
     
 }
 
-export default LiveView
+const mapStateToProps = (state)=>{
+    return{
+        story: state.story
+    }
+}
+
+export default connect(mapStateToProps)(LiveView)

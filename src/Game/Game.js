@@ -3,8 +3,13 @@ import Input from '../Input/Input'
 import LiveView from '../LiveView/LiveView'
 import Output from '../Output/Output'
 import './Game.css'
+import {connect} from 'react-redux'
+
 
 class Games extends Component {
+    componentDidMount(){
+        this.props.setStory(this.state.story)
+    }
     state = {
         interval:null,
         userInput : '',
@@ -69,4 +74,16 @@ class Games extends Component {
     }
 }
 
-export default Games
+const mapStateToProps = (state)=>{
+    return{
+        story: state.story
+    }
+}
+
+const mapDispatchProps = (dispatch)=>{
+    return{
+        setStory: (story)=>dispatch({type:'SET_STORY', story})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Games)
