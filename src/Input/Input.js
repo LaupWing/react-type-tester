@@ -1,5 +1,7 @@
 import React from 'react';
 import './Input.css'
+import {connect} from 'react-redux'
+
 const Input = (props)=>{
     const {inputDisplay} = props 
     
@@ -12,6 +14,7 @@ const Input = (props)=>{
             document.querySelector('.Input textarea').value = ''
             return props.reset()
         }
+        // props.setUserinput(e.target.value)
         props.userTypesIn(e.target.value)
     }
 
@@ -33,4 +36,16 @@ const Input = (props)=>{
     }
 }
 
-export default Input
+const mapStateToProps = (state)=>{
+    return{
+        inputDisplay: state.inputDisplay
+    }
+}
+
+const mapDispatchProps = (dispatch)=>{
+    return{
+        setUserinput: (input)=>dispatch({type:'SET_USERINPUT', input})
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Input)

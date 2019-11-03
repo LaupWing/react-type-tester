@@ -67,7 +67,6 @@ class Games extends Component {
                 <Input 
                     reset={this.reset}
                     userTypesIn={this.userTypesIn}
-                    inputDisplay={this.state.inputDisplay}
                 />
             </div>
         )
@@ -80,10 +79,10 @@ const mapStateToProps = (state)=>{
     }
 }
 
-const mapDispatchProps = (dispatch)=>{
-    return{
-        setStory: (story)=>dispatch({type:'SET_STORY', story})
+    const mapDispatchProps = (dispatch)=>{
+        return{
+            setStory: (story)=>dispatch({type:'SET_STORY', story})
+        }
     }
-}
 
 export default connect(mapStateToProps, mapDispatchProps)(Games)
