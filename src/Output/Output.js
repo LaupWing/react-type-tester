@@ -10,7 +10,6 @@ const Output = (props)=>{
             
             return Math.floor(wordPerMinute)
         }else{
-            console.log('zero')
             return '0'
         }
     }
