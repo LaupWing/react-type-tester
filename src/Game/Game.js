@@ -23,7 +23,6 @@ class Games extends Component {
         this.startCounting()
     }
     startCounting = ()=>{
-        console.log(this.state.userInput,this.state.userInput.length) 
         if(this.state.userInput.length > 0){
             if(this.state.interval===null){
                 this.setState({
@@ -37,14 +36,13 @@ class Games extends Component {
         }
     }
     stopCounting = ()=>{
-        console.log('clearing interval')
         clearInterval(this.state.interval)
         this.setState({
-            interval: null
+            interval: null,
+            timeLeft: 60
         })
     }
     reset = async  ()=>{
-        console.log('restting')
         await this.setState({
             userInput: ''
         })

@@ -9,10 +9,10 @@ const Input = (props)=>{
     
     const handleKeyUp = (e)=>{
         if(e.key.toLowerCase() === 'enter'){
+            document.querySelector('.Input textarea').value = ''
             return props.reset()
         }
         props.userTypesIn(e.target.value)
-        console.log(e.target.value)
     }
 
     if(inputDisplay === 'textarea'){
