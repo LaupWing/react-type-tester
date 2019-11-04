@@ -14,8 +14,9 @@ const Input = (props)=>{
             document.querySelector('.Input textarea').value = ''
             return props.reset()
         }
-        // props.setUserinput(e.target.value)
-        props.userTypesIn(e.target.value)
+        console.log(e.target.value)
+        props.setUserinput(e.target.value)
+        // props.userTypesIn(e.target.value)
     }
 
     if(inputDisplay === 'textarea'){

@@ -56,10 +56,7 @@ class Games extends Component {
     render(){
         return(
             <div className="Game">
-                <Output
-                    timeLeft={this.state.timeLeft}
-                    userInput={this.state.userInput}
-                />
+                <Output/>
                 <LiveView 
                     story={this.state.story} 
                     userInput={this.state.userInput}
@@ -79,10 +76,10 @@ const mapStateToProps = (state)=>{
     }
 }
 
-    const mapDispatchProps = (dispatch)=>{
-        return{
-            setStory: (story)=>dispatch({type:'SET_STORY', story})
-        }
+const mapDispatchProps = (dispatch)=>{
+    return{
+        setStory: (story)=>dispatch({type:'SET_STORY', story})
     }
+}
 
 export default connect(mapStateToProps, mapDispatchProps)(Games)

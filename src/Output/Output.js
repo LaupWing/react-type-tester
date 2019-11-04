@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import './Output.css'
+import {connect} from 'react-redux'
+
 class Output extends Component{
     state={
-        started: false
+        started: false,
+        timeElapsed: 0,
+        interval: null
     }
     // Output is one step behind maybe use redux to fix this problem?
     calcWordPM = ()=>{
         const totalWords = this.props.userInput.split(' ').filter(input=>input!=='').length
+        const timeLeft = this.props.duration - this.state.timeElapsed
         if(this.props.userInput.length>0){
-            const wordPerMinute = (totalWords/(60-this.props.timeLeft)) * 60
+            this.startCounting()
+            const wordPerMinute = (totalWords/(60-timeLeft)) * 60
             if(!this.state){
                 this.setState({
                     started: true
@@ -16,9 +22,8 @@ class Output extends Component{
             }
             return Math.floor(wordPerMinute)
         }else{
-            console.log('done')
             if(this.state.started){
-                return Math.floor((totalWords/(60-this.props.timeLeft)) * 60)
+                return Math.floor((totalWords/(60-timeLeft)) * 60)
             }
             return '0'
         }
@@ -45,13 +50,39 @@ class Output extends Component{
             return '0'
         }
     }
-    
+    startCounting = ()=>{
+        if(this.props.userInput.length > 0){
+            if(this.state.interval===null){
+                this.setState({
+                    interval : setInterval(()=>{
+                        console.log('starting interval')
+                        this.setState({
+                            timeElapsed : this.state.timeElapsed + 1
+                        })
+                    },1000)
+                })
+            }
+        }
+    }
+    stopCounting = ()=>{
+        clearInterval(this.state.timeElapsed)
+        this.setState({
+            interval: null,
+            timeElapsed: 0
+        })
+    }
+    reset = async  ()=>{
+        await this.setState({
+            userInput: ''
+        })
+        this.stopCounting()
+    }
     render(){
         return(
             <div className="Output">
                 <div className="field">
                     <p className="info">Time left</p>
-                    <p className="outcome">{this.props.timeLeft}</p>
+                    <p className="outcome">{this.props.duration - this.state.timeElapsed}</p>
                 </div>
     
                 <div className="field">
@@ -73,4 +104,11 @@ class Output extends Component{
     }
 }
 
-export default Output
+const mapStateToProps = (state)=>{
+    return{
+        userInput: state.userInput,
+        duration: state.duration
+    }
+}
+
+export default connect(mapStateToProps)(Output)
