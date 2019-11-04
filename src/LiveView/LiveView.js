@@ -27,7 +27,8 @@ const LiveView =  (props)=> {
 
 const mapStateToProps = (state)=>{
     return{
-        story: state.story
+        story: state.story,
+        userInput: state.userInput
     }
 }
 

@@ -3,7 +3,7 @@ import './Word.css'
 const word = (props)=>{
     const {word, userInput, wordIndex} = props
     // These variables below needs to moved to the game component
-    const wordArray = userInput !== null ? userInput.split(' ') : []
+    const wordArray = userInput !== '' ? userInput.split(' ') : []
     const wordArrayWithIndex = wordArray.map((word,index)=>{
         return{
             word,
