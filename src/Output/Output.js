@@ -58,25 +58,26 @@ class Output extends Component{
     }
     startCounting = ()=>{
         if(this.props.userInput.length > 0 && !this.state.finished){
-            console.log('start cuonting', this.state)
             if(this.state.interval===null){
                 this.setState({
                     interval : setInterval(async ()=>{
                         if(this.state.timeElapsed === this.props.duration){
-                            console.log( 'finsished')
-                            await this.setState({
+                            this.setState({
                                 results:{
                                     incorrect: this.incorrect(),
                                     correct: this.correct(),
                                     wordPerMinute: this.calcWordPM()
                                 },
                                 finished: true
+                            }, ()=>{
+                                this.stopCounting()
                             })
-                            return this.stopCounting()
+                            return
+                        }else{
+                            this.setState({
+                                timeElapsed : this.state.timeElapsed + 1
+                            })
                         }
-                        this.setState({
-                            timeElapsed : this.state.timeElapsed + 1
-                        })
                     },1000)
                 })
             }
@@ -84,7 +85,7 @@ class Output extends Component{
     }
     stopCounting = ()=>{
         console.log('stop counting')
-        clearInterval(this.state.timeElapsed)
+        clearInterval(this.state.interval)
         this.setState({
             interval: null,
             timeElapsed: 0
