@@ -14,8 +14,8 @@ class Input extends Component{
             document.querySelector('.Input textarea').value = ''
             return this.props.reset()
         }
-        this.props.setUserinput(e.target.value)
-        // props.userTypesIn(e.target.value)
+        const {setUserinput} = this.props
+        setUserinput(e.target.value)
     }
     render(){
         if(this.props.inputDisplay === 'textarea'){

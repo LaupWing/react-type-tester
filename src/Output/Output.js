@@ -6,7 +6,13 @@ class Output extends Component{
     state={
         started: false,
         timeElapsed: 0,
-        interval: null
+        interval: null,
+        results:{
+            wordPerMinute: null,
+            correct: null,
+            incorrect: null
+        },
+        finished: false
     }
     // Output is one step behind maybe use redux to fix this problem?
     calcWordPM = ()=>{
@@ -51,11 +57,23 @@ class Output extends Component{
         }
     }
     startCounting = ()=>{
-        if(this.props.userInput.length > 0){
+        if(this.props.userInput.length > 0 && !this.state.finished){
+            console.log('start cuonting', this.state)
             if(this.state.interval===null){
                 this.setState({
-                    interval : setInterval(()=>{
-                        console.log('starting interval')
+                    interval : setInterval(async ()=>{
+                        if(this.state.timeElapsed === this.props.duration){
+                            console.log( 'finsished')
+                            await this.setState({
+                                results:{
+                                    incorrect: this.incorrect(),
+                                    correct: this.correct(),
+                                    wordPerMinute: this.calcWordPM()
+                                },
+                                finished: true
+                            })
+                            return this.stopCounting()
+                        }
                         this.setState({
                             timeElapsed : this.state.timeElapsed + 1
                         })
@@ -65,6 +83,7 @@ class Output extends Component{
         }
     }
     stopCounting = ()=>{
+        console.log('stop counting')
         clearInterval(this.state.timeElapsed)
         this.setState({
             interval: null,
@@ -87,17 +106,17 @@ class Output extends Component{
     
                 <div className="field">
                     <p className="info">Correct</p>
-                    <p className="outcome">{this.correct()}</p>
+                    <p className="outcome">{this.state.results.correct ? this.state.results.correct : this.correct()}</p>
                 </div>
     
                 <div className="field">
                     <p className="info">Incorrect</p>
-                    <p className="outcome">{this.incorrect()}</p>
+                    <p className="outcome">{this.state.results.incorrect ? this.state.results.incorrect : this.incorrect()}</p>
                 </div>
     
                 <div className="field">
                     <p className="info">Words per minute</p>
-                    <p className="outcome">{this.calcWordPM()}</p>
+                    <p className="outcome">{this.state.results.wordsPerMinute ? this.state.results.wordsPerMinute : this.calcWordPM()}</p>
                 </div>
             </div>
         )
