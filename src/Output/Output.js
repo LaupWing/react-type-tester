@@ -4,11 +4,10 @@ import {connect} from 'react-redux'
 
 class Output extends Component{
     state={
-        started: false,
         timeElapsed: 0,
         interval: null,
         results:{
-            wordPerMinute: null,
+            wordsPerMinute: null,
             correct: null,
             incorrect: null
         },
@@ -20,17 +19,9 @@ class Output extends Component{
         const timeLeft = this.props.duration - this.state.timeElapsed
         if(this.props.userInput.length>0){
             this.startCounting()
-            const wordPerMinute = (totalWords/(60-timeLeft)) * 60
-            if(!this.state){
-                this.setState({
-                    started: true
-                })
-            }
+            const wordPerMinute = (totalWords/(this.props.duration-timeLeft)) * 60
             return Math.floor(wordPerMinute)
         }else{
-            if(this.state.started){
-                return Math.floor((totalWords/(60-timeLeft)) * 60)
-            }
             return '0'
         }
     }
@@ -39,9 +30,6 @@ class Output extends Component{
             return document.querySelectorAll('.LiveView span.word.incorrect').length
         }
         else{
-            if(this.state.started){
-                return document.querySelectorAll('.LiveView span.word.incorrect').length
-            }
             return '0'
         }
     }
@@ -50,9 +38,6 @@ class Output extends Component{
             return document.querySelectorAll('.LiveView span.word.correct').length
         }
         else{
-            if(this.state.started){
-                return document.querySelectorAll('.LiveView span.word.correct').length
-            }
             return '0'
         }
     }
@@ -62,11 +47,12 @@ class Output extends Component{
                 this.setState({
                     interval : setInterval(async ()=>{
                         if(this.state.timeElapsed === this.props.duration){
+                            console.log('setting the results')
                             this.setState({
                                 results:{
                                     incorrect: this.incorrect(),
                                     correct: this.correct(),
-                                    wordPerMinute: this.calcWordPM()
+                                    wordsPerMinute: this.calcWordPM()
                                 },
                                 finished: true
                             }, ()=>{
@@ -84,12 +70,15 @@ class Output extends Component{
         }
     }
     stopCounting = ()=>{
-        console.log('stop counting')
         clearInterval(this.state.interval)
+        console.log(this.state.results)
         this.setState({
             interval: null,
             timeElapsed: 0
         })
+    }
+    test = ()=>{
+        console.log(this.state.results)
     }
     reset = async  ()=>{
         await this.setState({
@@ -99,7 +88,7 @@ class Output extends Component{
     }
     render(){
         return(
-            <div className="Output">
+            <div className="Output" onClick={this.test}>
                 <div className="field">
                     <p className="info">Time left</p>
                     <p className="outcome">{this.props.duration - this.state.timeElapsed}</p>
@@ -107,17 +96,17 @@ class Output extends Component{
     
                 <div className="field">
                     <p className="info">Correct</p>
-                    <p className="outcome">{this.state.results.correct ? this.state.results.correct : this.correct()}</p>
+                    <p className="outcome correct">{this.state.results.correct ? this.state.results.correct : this.correct()}</p>
                 </div>
     
                 <div className="field">
                     <p className="info">Incorrect</p>
-                    <p className="outcome">{this.state.results.incorrect ? this.state.results.incorrect : this.incorrect()}</p>
+                    <p className="outcome incorrect">{this.state.results.incorrect ? this.state.results.incorrect : this.incorrect()}</p>
                 </div>
     
                 <div className="field">
                     <p className="info">Words per minute</p>
-                    <p className="outcome">{this.state.results.wordsPerMinute ? this.state.results.wordsPerMinute : this.calcWordPM()}</p>
+                    <p className="outcome wpm">{this.state.results.wordsPerMinute ? this.state.results.wordsPerMinute : this.calcWordPM()}</p>
                 </div>
             </div>
         )
