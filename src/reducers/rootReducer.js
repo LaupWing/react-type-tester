@@ -6,10 +6,7 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action)=>{
-    // const key = Object.keys(action).filter(k=>k!=='type')[0]
-    // const copyState = {...state}
-    // console.log(action[key])
-    // console.log(copyState[key])
+    
     if(action.type === 'SET_USERINPUT'){
         const userInput = action.userInput
         return{
